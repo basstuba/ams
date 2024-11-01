@@ -19,7 +19,7 @@ class UserController extends Controller
             ]);
 
             return response()->json(['message' => '登録完了しました'], 201);
-        } catch (Exception $error) {
+        } catch(Exception $error) {
             return response()->json(['error' => 'サーバーエラーが発生しました'], 500);
         }
     }
