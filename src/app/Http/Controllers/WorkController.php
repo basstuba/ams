@@ -28,11 +28,11 @@ class WorkController extends Controller
 
     public function update(Request $request) {
         try {
-            $work = Work::where('user_id', $request->user_id)->latest()->first();
+            $work = Work::getLatestWorkByUserId($request->user_id);
 
-            $laborStart = new Carbon($work['work_start']);
+            $laborStart = new Carbon($work->work_start);
             $laborEnd = Work::currentTime();
-            $breakTime = isset($work['break_total']) ? new Carbon($work['break_total']) : null;
+            $breakTime = isset($work->break_total) ? new Carbon($work->break_total) : null;
 
             $laborTime = $laborStart->diffInSeconds(new Carbon($laborEnd));
             $laborTimeFormat = Work::formatTime($laborTime);

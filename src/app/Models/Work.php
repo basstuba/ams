@@ -29,6 +29,10 @@ class Work extends Model
         return $this->hasMany('App\Models\Rest');
     }
 
+    public static function getLatestWorkByUserId($userId) {
+        return self::where('user_id', $userId)->latest()->first();
+    }
+
     public static function today() {
         return Carbon::now()->format('Y-m-d');
     }
