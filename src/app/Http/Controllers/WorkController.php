@@ -37,7 +37,7 @@ class WorkController extends Controller
             $laborTime = $laborStart->diffInSeconds(new Carbon($laborEnd));
             $laborTimeFormat = Work::formatTime($laborTime);
 
-            if($breakTime == null) {
+            if($breakTime === null) {
                 $workTotal = $laborTimeFormat;
             }else{
                 $workTime = $breakTime->diffInSeconds($laborTimeFormat);

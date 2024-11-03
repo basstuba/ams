@@ -43,11 +43,10 @@ class RestController extends Controller
                 "break_time" => $breakTimeFormat
             ]);
 
-            if($breakTotal == null) {
+            if($breakTotal === null) {
                 $break = $breakTimeFormat;
             }else{
-                $breakAdd = $breakTotal->addSeconds($breakTimeFormat);
-                $break = Work::formatTime($breakAdd);
+                $break = $breakTotal->addSeconds($breakTime);
             }
 
             Work::find($work->id)->update([
