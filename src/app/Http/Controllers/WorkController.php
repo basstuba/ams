@@ -9,18 +9,26 @@ use Exception;
 
 class WorkController extends Controller
 {
+    public function index(Request $request) {
+        $work = Work::getLatestWorkByUserId($request->user_id);
+
+        return response()->json(['work' => $work], 200);
+    }
+
     public function store(Request $request) {
         try {
             $today = Work::today();
             $start = Work::currentTime();
 
-            Work::create([
+            $work = Work::create([
                 "user_id" => $request->user_id,
                 "date" => $today,
                 "work_start" => $start
             ]);
 
-            return response()->json(['message' => '勤務開始しました'], 201);
+            $newWork = Work::find($work->id);
+
+            return response()->json(['message' => '勤務開始しました', 'work' => $newWork], 201);
         } catch(Exception $error) {
             return response()->json(['error' => 'サーバーエラーが発生しました'], 500);
         }
@@ -49,7 +57,9 @@ class WorkController extends Controller
                 "work_time" => $workTotal
             ]);
 
-            return response()->json(['message' => '勤務終了です。お疲れ様でした'], 200);
+            $newWork = Work::find($work->id);
+
+            return response()->json(['message' => '勤務終了です。お疲れ様でした', 'work' => $newWork], 200);
         } catch(Exception $error) {
             return response()->json(['error' => 'サーバーエラーが発生しました'], 500);
         }

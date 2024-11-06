@@ -21,4 +21,8 @@ class Rest extends Model
     public function work() {
         return $this->belongsTo('App\Models\Work');
     }
+
+    public static function getLatestRestByWorkId($workId) {
+        return self::where('work_id', $workId)->latest()->first();
+    }
 }

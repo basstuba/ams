@@ -15,8 +15,10 @@ Route::group([
     Route::post('logout', [UserController::class, 'logout']);
     Route::post('refresh', [UserController::class, 'refresh']);
     Route::get('user', [UserController::class, 'me']);
+    Route::post('work_index', [WorkController::class, 'index']);
     Route::post('work_start', [WorkController::class, 'store']);
     Route::post('work_end', [WorkController::class, 'update']);
+    Route::post('break_index', [RestController::class, 'index']);
     Route::post('break_start', [RestController::class, 'store']);
     Route::post('break_end', [RestController::class, 'update']);
 });
