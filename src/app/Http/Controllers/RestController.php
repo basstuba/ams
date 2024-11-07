@@ -12,7 +12,7 @@ class RestController extends Controller
 {
     public function index(Request $request) {
         $work = Work::getLatestWorkByUserId($request->user_id);
-        $rest = Rest::getLatestRestByWorkId($work->id);
+        $rest = ( !$work ) ? ['break_start' => '', 'break_end' => ''] : Rest::getLatestRestByWorkId($work->id);
 
         return response()->json(['rest' => $rest], 200);
     }
