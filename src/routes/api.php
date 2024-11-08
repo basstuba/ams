@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
+use App\Http\Controllers\AllUserController;
+use App\Http\Controllers\DailyController;
+use App\Http\Controllers\MonthlyController;
 
 Route::group([
     'middleware' => ['auth:api'],
@@ -15,10 +18,22 @@ Route::group([
     Route::post('logout', [UserController::class, 'logout']);
     Route::post('refresh', [UserController::class, 'refresh']);
     Route::get('user', [UserController::class, 'me']);
+
     Route::post('work_index', [WorkController::class, 'index']);
     Route::post('work_start', [WorkController::class, 'store']);
     Route::post('work_end', [WorkController::class, 'update']);
+
     Route::post('break_index', [RestController::class, 'index']);
     Route::post('break_start', [RestController::class, 'store']);
     Route::post('break_end', [RestController::class, 'update']);
+
+    Route::get('all_user', [AllUserController::class, 'index']);
+
+    Route::get('yesterday', [DailyController::class, 'index']);
+    Route::post('day_before', [DailyController::class, 'showBefore']);
+    Route::post('day_after', [DailyController::class, 'showAfter']);
+
+    Route::post('this_month', [MonthlyController::class, 'index']);
+    Route::post('month_before', [MonthlyController::class, 'showBefore']);
+    Route::post('month_after', [MonthlyController::class, 'showAfter']);
 });
