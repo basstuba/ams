@@ -48,4 +48,32 @@ class Work extends Model
 
         return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
     }
+
+    public static function getWorksByDate($day) {
+        return self::with(['user', 'rests'])->where('date', $day)->get();
+    }
+
+    public static function getBeforeDate($baseDate) {
+        $subBase = new Carbon($baseDate);
+
+        return $subBase->subDay()->format('Y-m-d');
+    }
+
+    public static function getAfterDate($baseDate) {
+        $addBase = new Carbon($baseDate);
+
+        return $addBase->addDay()->format('Y-m-d');
+    }
+
+    public static function getBeforeMonth($baseMonth) {
+        $subBaseMonth = new Carbon($baseMonth);
+
+        return $subBaseMonth->subMonth()->format('Y-m-d');
+    }
+
+    public static function getAfterMonth($baseMonth) {
+        $addBaseMonth = new Carbon($baseMonth);
+
+        return $addBaseMonth->addMonth()->format('Y-m-d');
+    }
 }
