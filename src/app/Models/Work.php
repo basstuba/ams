@@ -65,15 +65,22 @@ class Work extends Model
         return $addBase->addDay()->format('Y-m-d');
     }
 
+    public static function getWorkLists($userId, $dateMonth) {
+        return self::with('rests')
+            ->where('user_id', $userId)
+            ->where('date', 'like', '%' . $dateMonth . '%')
+            ->get();
+    }
+
     public static function getBeforeMonth($baseMonth) {
         $subBaseMonth = new Carbon($baseMonth);
 
-        return $subBaseMonth->subMonth()->format('Y-m-d');
+        return $subBaseMonth->subMonth()->format('Y-m');
     }
 
     public static function getAfterMonth($baseMonth) {
         $addBaseMonth = new Carbon($baseMonth);
 
-        return $addBaseMonth->addMonth()->format('Y-m-d');
+        return $addBaseMonth->addMonth()->format('Y-m');
     }
 }
