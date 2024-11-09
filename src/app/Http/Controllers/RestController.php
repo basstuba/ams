@@ -11,11 +11,15 @@ use Exception;
 class RestController extends Controller
 {
     public function index(Request $request) {
-        $work = Work::getLatestWorkByUserId($request->user_id);
-        $rest = $work ? (Rest::getLatestRestByWorkId($work->id) ?? ['break_start' => '', 'break_end' => ''])
-        : ['break_start' => '', 'break_end' => ''];
+        try {
+            $work = Work::getLatestWorkByUserId($request->user_id);
+            $rest = $work ? (Rest::getLatestRestByWorkId($work->id) ?? ['break_start' => '', 'break_end' => ''])
+            : ['break_start' => '', 'break_end' => ''];
 
-        return response()->json(['rest' => $rest], 200);
+            return response()->json(['rest' => $rest], 200);
+        } catch(Exception $error) {
+            return response()->json(['error' => 'データの取得に失敗しました'], 500);
+        }
     }
 
     public function store(Request $request) {

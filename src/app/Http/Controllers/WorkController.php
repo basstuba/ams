@@ -10,16 +10,20 @@ use Exception;
 class WorkController extends Controller
 {
     public function index(Request $request) {
-        $work = Work::getLatestWorkByUserId($request->user_id);
+        try {
+            $work = Work::getLatestWorkByUserId($request->user_id);
 
-        if( !$work ) {
-            $work = [
-                'work_start' => '',
-                'work_end' => ''
-            ];
+            if( !$work ) {
+                $work = [
+                    'work_start' => '',
+                    'work_end' => ''
+                ];
+            }
+
+            return response()->json(['work' => $work], 200);
+        } catch(Exception $error) {
+            return response()->json(['error' => 'データの取得に失敗しました'], 500);
         }
-
-        return response()->json(['work' => $work], 200);
     }
 
     public function store(Request $request) {
