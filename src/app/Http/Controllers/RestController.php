@@ -32,9 +32,7 @@ class RestController extends Controller
                 "break_start" => $start
             ]);
 
-            $newRest = Rest::find($rest->id);
-
-            return response()->json(['message' => '休憩開始しました', 'rest' => $newRest], 201);
+            return response()->json(['message' => '休憩開始しました', 'rest' => $rest], 201);
         } catch(Exception $error) {
             return response()->json(['error' => 'サーバーエラーが発生しました'], 500);
         }

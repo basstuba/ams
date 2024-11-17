@@ -37,9 +37,7 @@ class WorkController extends Controller
                 "work_start" => $start
             ]);
 
-            $newWork = Work::find($work->id);
-
-            return response()->json(['message' => '勤務開始しました', 'work' => $newWork], 201);
+            return response()->json(['message' => '勤務開始しました', 'work' => $work], 201);
         } catch(Exception $error) {
             return response()->json(['error' => 'サーバーエラーが発生しました'], 500);
         }

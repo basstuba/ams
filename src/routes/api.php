@@ -2,12 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AddController;
+use App\Http\Controllers\AllUserController;
+use App\Http\Controllers\DailyController;
+use App\Http\Controllers\FixesController;
+use App\Http\Controllers\MonthlyController;
 use App\Http\Controllers\RestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
-use App\Http\Controllers\AllUserController;
-use App\Http\Controllers\DailyController;
-use App\Http\Controllers\MonthlyController;
 
 Route::group([
     'middleware' => ['auth:api'],
@@ -36,4 +38,10 @@ Route::group([
     Route::post('this_month', [MonthlyController::class, 'index']);
     Route::post('month_before', [MonthlyController::class, 'showBefore']);
     Route::post('month_after', [MonthlyController::class, 'showAfter']);
+
+    Route::post('date_search', [FixesController::class, 'search']);
+    Route::post('work_fixes', [FixesController::class, 'workUpdate']);
+    Route::post('rest_fixes', [FixesController::class, 'restUpdate']);
+
+    Route::post('work_add', [AddController::class, 'store']);
 });
