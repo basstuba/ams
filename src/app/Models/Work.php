@@ -69,6 +69,7 @@ class Work extends Model
         return self::with('rests')
             ->where('user_id', $userId)
             ->where('date', 'like', '%' . $dateMonth . '%')
+            ->oldest('date')
             ->get();
     }
 
