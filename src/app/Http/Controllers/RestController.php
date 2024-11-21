@@ -45,8 +45,6 @@ class RestController extends Controller
 
             $breakStart = new Carbon($rest->break_start);
             $breakEnd = Work::currentTime();
-            $breakTotal = isset($work->break_total) ? new Carbon($work->break_total) : null;
-
             $breakTime = $breakStart->diffInSeconds(new Carbon($breakEnd));
             $breakTimeFormat = Work::formatTime($breakTime);
 
@@ -57,6 +55,7 @@ class RestController extends Controller
 
             $newRest = Rest::find($rest->id);
 
+            $breakTotal = isset($work->break_total) ? new Carbon($work->break_total) : null;
             if($breakTotal === null) {
                 $break = $breakTimeFormat;
             }else{
