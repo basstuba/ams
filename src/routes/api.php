@@ -30,6 +30,7 @@ Route::group([
     Route::post('break_end', [RestController::class, 'update']);
 
     Route::get('all_user', [AllUserController::class, 'index']);
+    Route::post('user_data', [AllUserController::class, 'show']);
 
     Route::get('yesterday', [DailyController::class, 'index']);
     Route::post('day_before', [DailyController::class, 'showBefore']);

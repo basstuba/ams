@@ -16,4 +16,14 @@ class AllUserController extends Controller
             return response()->json(['error' => 'データの取得に失敗しました'], 500);
         }
     }
+
+    public function show(Request $request) {
+        try {
+            $userData = User::find($request->user_id);
+
+            return response()->json(['user_data' => $userData], 200);
+        } catch(Exception $error) {
+            return response()->json(['error' => 'データの取得に失敗しました'], 500);
+        }
+    }
 }

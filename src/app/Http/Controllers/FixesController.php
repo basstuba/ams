@@ -12,9 +12,9 @@ class FixesController extends Controller
 {
     public function search(Request $request) {
         try {
-            $searchWorkDate = Work::getWorkLists($request->user_id, $request->search_date);
+            $searchWorkData = Work::getWorkLists($request->user_id, $request->search_date);
 
-            return response()->json(['search_work_date' => $searchWorkDate], 200);
+            return response()->json(['search_work_data' => $searchWorkData], 200);
         } catch(Exception $error) {
             return response()->json(['error' => 'データの取得に失敗しました'], 500);
         }
