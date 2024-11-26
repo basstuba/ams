@@ -38,6 +38,8 @@ http://localhost
 
 # 環境構築
 
+**事前にdockerとGitのインストールをお願い致します。**
+
 ### 1 Gitファイルをクローンする
 
 git clone git@github.com:basstuba/ams.git
@@ -119,3 +121,5 @@ php artisan jwt:secret
 http://localhost:8080
 
 ### 2 docker-compose.ymlの設定はlocalhostでの接続設定になっています。
+
+### 3 環境構築はフロントエンド、バックエンド共にlocalhostでの使用方法となります。
