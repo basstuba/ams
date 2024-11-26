@@ -48,11 +48,11 @@ cd ams
 
 ### 3 Dockerコンテナを作成する
 
-docker-compose up -d --build
+docker compose up -d --build
 
 ### 4 Laravelパッケージをインストールする
 
-docker-compose exec php bash
+docker compose exec php bash
 
 でPHPコンテナにログインし
 
@@ -88,13 +88,13 @@ DB_PASSWORD=ams_pass
 
 ### 6 テーブルの作成
 
-docker-compose exec php bash
+docker compose exec php bash
 
 でPHPコンテナにログインし(ログインしたままであれば上記コマンドは実行しなくて良いです。)
 
 php artisan migrate
 
-### 7 ダミーデータ作成
+### 7 ダミーデータ作成（管理者用アカウントになります。アカウントの詳細はフロントエンドのREADMEに記載しています。）
 
 PHPコンテナにログインした状態で
 
