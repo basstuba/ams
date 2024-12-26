@@ -1,32 +1,59 @@
 # 勤怠管理システム～Attendance management system～
 
-こちらは勤怠管理システムのバックエンドになります。
+![トップページ](readme_image/AmsTopPage.png)
 
-下記の手順でバックエンドの環境構築後、dockerのコンテナが起動状態でフロントエンドからアプリをご利用いただけます。
+**こちらは勤怠管理システムのバックエンドになります。**
+
+:::note info
+ご利用にはフロントエンドとバックエンド両方を起動していただく必要があります。
+:::
+
+下記の環境構築手順でバックエンドの環境構築後、dockerのコンテナが起動している状態でフロントエンドを起動してください。
 
 フロントエンドはこちらのURLになります。
 
-## フロントエンド URL
+## フロントエンド リポジトリ URL
 
 https://github.com/basstuba/ams-frontend
 
-## バックエンド URL
+## 機能一覧
 
-http://localhost
+-アカウント作成機能
+
+-ログイン及びログアウト機能
+
+-打刻機能
+
+（出勤、退勤、休憩開始、休憩終了）
+
+-日付別勤怠一覧表示機能
+
+-個人別勤怠一覧表示機能
+
+-ユーザーアカウント検索機能
+
+-ページネーション機能
+
+-エクスポート機能
+
+（日付別勤怠一覧及び個人別勤怠一覧をExcelにて出力）
+
+-打刻修正機能
+
+-打刻追加機能
 
 ## 使用技術
 
-・Laravel 11.9
+フロントエンドの使用技術はフロントエンドのREADMEに記載しています。
 
-・nginx 1.27.0
-
-・php 8.2.19
-
-・mysql 8.0.37
-
-・phpMyAdmin
-
-・docker
+| 言語・フレームワーク・その他使用技術 | バージョン |
+| ------------------ | ----------|
+| Laravel            | 11.9      |
+| php                | 8.2.19    |
+| nginx              | 1.27.0    |
+| mysql              | 8.0.37    |
+| phpMyAdmin         |           |
+| docker             | 27.4.0    |
 
 ## テーブル設計
 
@@ -36,38 +63,36 @@ http://localhost
 
 ![ER図](readme_image/AmsER.png)
 
-# 環境構築
+## 環境構築
 
-**事前にdockerとGitのインストールをお願い致します。**
+:::note warn
+事前にdockerとGit及びGitHubのインストールをお願い致します。
+:::
 
-### 1 Gitファイルをクローンする
+### Dockerコンテナの構築
 
-git clone git@github.com:basstuba/ams.git
+1. 任意のディレクトリにて`git clone git@github.com:basstuba/ams.git`を実行
 
-### 2 クローンしたディレクトリに移動する
+2. `cd ams`にてアプリケーションのディレクトリへ移動
 
-cd ams
+3. DockerDesktopアプリを立ち上げる
 
-### 3 Dockerコンテナを作成する
+4. `docker compose up -d --build`
 
-docker compose up -d --build
+### Laravelの構築
 
-### 4 Laravelパッケージをインストールする
+1. Laravelのインストール
+-`docker compose exec php bash`を実行しPHPコンテナにログインして
 
-docker compose exec php bash
+-`composer install`
 
-でPHPコンテナにログインし
+2. .envファイルの作成
 
-composer install
+-PHPコンテナにログインした状態で`cp .env.example .env`
 
-### 5 .envファイルを作成する
+-作成した.envファイルの該当欄を下記のように変更
 
-PHPコンテナにログインした状態で
-
-cp .env.example .env
-
-作成した.envファイルの該当欄を下記のように変更
-
+```
 APP_NAME=AMS
 
 APP_TIMEZONE=Asia/Tokyo
@@ -82,44 +107,45 @@ DB_CONNECTION=mysql
 
 DB_HOST=mysql
 
+DB_PORT=3306
+
 DB_DATABASE=ams_db
 
 DB_USERNAME=ams_user
 
 DB_PASSWORD=ams_pass
+```
 
-### 6 テーブルの作成
+3. テーブルの作成
 
-docker compose exec php bash
+-`docker compose exec php bash`を実行してPHPコンテナにログインする(ログインしたままであれば上記コマンドは実行しなくて良いです。)
 
-でPHPコンテナにログインし(ログインしたままであれば上記コマンドは実行しなくて良いです。)
+-`php artisan migrate`
 
-php artisan migrate
+4. ダミーデータ作成（管理者用アカウントになります。アカウントの詳細はフロントエンドのREADMEに記載しています。）
 
-### 7 ダミーデータ作成（管理者用アカウントになります。アカウントの詳細はフロントエンドのREADMEに記載しています。）
+-PHPコンテナにログインした状態で
 
-PHPコンテナにログインした状態で
+-`php artisan db:seed`
 
-php artisan db:seed
+5. アプリケーション起動キーの作成
 
-### 8 アプリケーション起動キーの作成
+-PHPコンテナにログインした状態で
 
-PHPコンテナにログインした状態で
+-`php artisan key:generate`
 
-php artisan key:generate
+6. jwtシークレットキーの作成
 
-### 9 jwtシークレットキーの作成
+-PHPコンテナにログインした状態で
 
-PHPコンテナにログインした状態で
-
-php artisan jwt:secret
+-`php artisan jwt:secret`
 
 ## その他
 
-### 1 データベースのテーブルを確認出来るphpMyAdminのURLは下記の通りです。
+1. データベースのテーブルを確認出来るphpMyAdminのURLは下記の通りです。
 
 http://localhost:8080
 
-### 2 docker-compose.ymlの設定はlocalhostでの接続設定になっています。
+2. docker-compose.ymlの設定はlocalhostでの接続設定になっています。
 
-### 3 環境構築はフロントエンド、バックエンド共にlocalhostでの使用方法となります。
+3. 環境構築はフロントエンド、バックエンド共にlocalhostでの使用方法となります。
