@@ -4,9 +4,8 @@
 
 **こちらは勤怠管理システムのバックエンドになります。**
 
-:::note info
-ご利用にはフロントエンドとバックエンド両方を起動していただく必要があります。
-:::
+> [!Note]
+> ご利用にはフロントエンドとバックエンド両方を起動していただく必要があります。
 
 下記の環境構築手順でバックエンドの環境構築後、dockerのコンテナが起動している状態でフロントエンドを起動してください。
 
@@ -18,29 +17,29 @@ https://github.com/basstuba/ams-frontend
 
 ## 機能一覧
 
--アカウント作成機能
+- アカウント作成機能
 
--ログイン及びログアウト機能
+- ログイン及びログアウト機能
 
--打刻機能
+- 打刻機能
 
 （出勤、退勤、休憩開始、休憩終了）
 
--日付別勤怠一覧表示機能
+- 日付別勤怠一覧表示機能
 
--個人別勤怠一覧表示機能
+- 個人別勤怠一覧表示機能
 
--ユーザーアカウント検索機能
+- ユーザーアカウント検索機能
 
--ページネーション機能
+- ページネーション機能
 
--エクスポート機能
+- エクスポート機能
 
 （日付別勤怠一覧及び個人別勤怠一覧をExcelにて出力）
 
--打刻修正機能
+- 打刻修正機能
 
--打刻追加機能
+- 打刻追加機能
 
 ## 使用技術
 
@@ -65,9 +64,8 @@ https://github.com/basstuba/ams-frontend
 
 ## 環境構築
 
-:::note warn
-事前にdockerとGit及びGitHubのインストールをお願い致します。
-:::
+> [!Warning]
+> 事前にdockerとGit及びGitHubのインストールをお願い致します。
 
 ### Dockerコンテナの構築
 
@@ -82,15 +80,15 @@ https://github.com/basstuba/ams-frontend
 ### Laravelの構築
 
 1. Laravelのインストール
--`docker compose exec php bash`を実行しPHPコンテナにログインして
+- `docker compose exec php bash`を実行しPHPコンテナにログインして
 
--`composer install`
+- `composer install`
 
 2. .envファイルの作成
 
--PHPコンテナにログインした状態で`cp .env.example .env`
+- PHPコンテナにログインした状態で`cp .env.example .env`
 
--作成した.envファイルの該当欄を下記のように変更
+- 作成した.envファイルの該当欄を下記のように変更
 
 ```
 APP_NAME=AMS
@@ -118,27 +116,27 @@ DB_PASSWORD=ams_pass
 
 3. テーブルの作成
 
--`docker compose exec php bash`を実行してPHPコンテナにログインする(ログインしたままであれば上記コマンドは実行しなくて良いです。)
+- `docker compose exec php bash`を実行してPHPコンテナにログインする(ログインしたままであれば上記コマンドは実行しなくて良いです。)
 
--`php artisan migrate`
+- `php artisan migrate`
 
 4. ダミーデータ作成（管理者用アカウントになります。アカウントの詳細はフロントエンドのREADMEに記載しています。）
 
--PHPコンテナにログインした状態で
+- PHPコンテナにログインした状態で
 
--`php artisan db:seed`
+- `php artisan db:seed`
 
 5. アプリケーション起動キーの作成
 
--PHPコンテナにログインした状態で
+- PHPコンテナにログインした状態で
 
--`php artisan key:generate`
+- `php artisan key:generate`
 
 6. jwtシークレットキーの作成
 
--PHPコンテナにログインした状態で
+- PHPコンテナにログインした状態で
 
--`php artisan jwt:secret`
+- `php artisan jwt:secret`
 
 ## その他
 
