@@ -69,102 +69,101 @@ https://github.com/basstuba/ams-frontend
 
 ### Dockerコンテナの構築
 
-1. 任意のディレクトリにて
+1. GitHubからアプリケーションを取得
+    1. 任意のディレクトリにて
     ```
     git clone git@github.com:basstuba/ams.git
     ```
     を実行
-
-2. ```
+    2.  ```
     cd ams
     ```
     にてアプリケーションのディレクトリへ移動
 
-3. DockerDesktopアプリを立ち上げる
+2. DockerDesktopアプリを立ち上げる
 
-4. ```
+3. コンテナをビルド
+    1. ```
     docker compose up -d --build
     ```
+    を実行
 
 ### Laravelの構築
 
 1. Laravelのインストール
-- ```
+    1. ```
     docker compose exec php bash
     ```
-    を実行しPHPコンテナにログインして
-
-- ```
+    を実行しPHPコンテナにログインする
+    2. ```
     composer install
     ```
+    を実行
 
 2. .envファイルの作成
-
-- PHPコンテナにログインした状態で
+    1. PHPコンテナにログインした状態で
     ```
     cp .env.example .env
     ```
+    を実行
+    2. 作成した.envファイルの該当欄を下記のように変更
+    ```
+    APP_NAME=AMS
 
-- 作成した.envファイルの該当欄を下記のように変更
+    APP_TIMEZONE=Asia/Tokyo
 
-```
-APP_NAME=AMS
+    APP_LOCALE=ja
 
-APP_TIMEZONE=Asia/Tokyo
+    APP_FALLBACK_LOCALE=ja
 
-APP_LOCALE=ja
+    APP_FAKER_LOCALE=ja_JP
 
-APP_FALLBACK_LOCALE=ja
+    DB_CONNECTION=mysql
 
-APP_FAKER_LOCALE=ja_JP
+    DB_HOST=mysql
 
-DB_CONNECTION=mysql
+    DB_PORT=3306
 
-DB_HOST=mysql
+    DB_DATABASE=ams_db
 
-DB_PORT=3306
+    DB_USERNAME=ams_user
 
-DB_DATABASE=ams_db
-
-DB_USERNAME=ams_user
-
-DB_PASSWORD=ams_pass
-```
+    DB_PASSWORD=ams_pass
+    ```
 
 3. テーブルの作成
-
-- ```
+    1. ```
     docker compose exec php bash
     ```
     を実行してPHPコンテナにログインする(ログインしたままであれば上記コマンドは実行しなくて良いです。)
-
-- ```
+    2. ```
     php artisan migrate
     ```
+    を実行
 
 4. ダミーデータ作成（管理者用アカウントになります。アカウントの詳細はフロントエンドのREADMEに記載しています。）
-
-- PHPコンテナにログインした状態で
-
-- ```
+    1. PHPコンテナにログインした状態で
+    ```
     php artisan db:seed
     ```
+    を実行
 
 5. アプリケーション起動キーの作成
-
-- PHPコンテナにログインした状態で
-
-- ```
+    1. PHPコンテナにログインした状態で
+    ```
     php artisan key:generate
     ```
+    を実行
 
 6. jwtシークレットキーの作成
-
-- PHPコンテナにログインした状態で
-
-- ```
+    1. PHPコンテナにログインした状態で
+    ```
     php artisan jwt:secret
     ```
+    を実行
+
+
+**バックエンドの環境構築は以上になります。ここまでの構築手順を実行してDockerが起動している状態でフロントエンドのアプリケーションを起動してください。**
 
 ## その他
 
