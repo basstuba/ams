@@ -5,7 +5,7 @@
 **こちらは勤怠管理システムのバックエンドになります。**
 
 > [!Note]
-> ご利用にはフロントエンドとバックエンド両方を起動していただく必要があります。
+> <span style="font-size:larger">ご利用にはフロントエンドとバックエンド両方を起動していただく必要があります。</span>
 
 下記の環境構築手順でバックエンドの環境構築後、dockerのコンテナが起動している状態でフロントエンドを起動してください。
 
@@ -23,7 +23,7 @@ https://github.com/basstuba/ams-frontend
 
 - 打刻機能
 
-（出勤、退勤、休憩開始、休憩終了）
+    （出勤、退勤、休憩開始、休憩終了）
 
 - 日付別勤怠一覧表示機能
 
@@ -35,7 +35,7 @@ https://github.com/basstuba/ams-frontend
 
 - エクスポート機能
 
-（日付別勤怠一覧及び個人別勤怠一覧をExcelにて出力）
+    （日付別勤怠一覧及び個人別勤怠一覧をExcelにて出力）
 
 - 打刻修正機能
 
@@ -65,28 +65,28 @@ https://github.com/basstuba/ams-frontend
 ## 環境構築
 
 > [!Warning]
-> 事前にdockerとGit及びGitHubのインストールをお願い致します。
+> <span style="font-size:larger">事前にdockerとGit及びGitHubのインストールをお願い致します。</span>
 
 ### Dockerコンテナの構築
 
-1. 任意のディレクトリにて`git clone git@github.com:basstuba/ams.git`を実行
+1. 任意のディレクトリにて```git clone git@github.com:basstuba/ams.git```を実行
 
-2. `cd ams`にてアプリケーションのディレクトリへ移動
+2. ```cd ams```にてアプリケーションのディレクトリへ移動
 
 3. DockerDesktopアプリを立ち上げる
 
-4. `docker compose up -d --build`
+4. ```docker compose up -d --build```
 
 ### Laravelの構築
 
 1. Laravelのインストール
-- `docker compose exec php bash`を実行しPHPコンテナにログインして
+- ```docker compose exec php bash```を実行しPHPコンテナにログインして
 
-- `composer install`
+- ```composer install```
 
 2. .envファイルの作成
 
-- PHPコンテナにログインした状態で`cp .env.example .env`
+- PHPコンテナにログインした状態で```cp .env.example .env```
 
 - 作成した.envファイルの該当欄を下記のように変更
 
@@ -116,33 +116,33 @@ DB_PASSWORD=ams_pass
 
 3. テーブルの作成
 
-- `docker compose exec php bash`を実行してPHPコンテナにログインする(ログインしたままであれば上記コマンドは実行しなくて良いです。)
+- ```docker compose exec php bash```を実行してPHPコンテナにログインする(ログインしたままであれば上記コマンドは実行しなくて良いです。)
 
-- `php artisan migrate`
+- ```php artisan migrate```
 
 4. ダミーデータ作成（管理者用アカウントになります。アカウントの詳細はフロントエンドのREADMEに記載しています。）
 
 - PHPコンテナにログインした状態で
 
-- `php artisan db:seed`
+- ```php artisan db:seed```
 
 5. アプリケーション起動キーの作成
 
 - PHPコンテナにログインした状態で
 
-- `php artisan key:generate`
+- ```php artisan key:generate```
 
 6. jwtシークレットキーの作成
 
 - PHPコンテナにログインした状態で
 
-- `php artisan jwt:secret`
+- ```php artisan jwt:secret```
 
 ## その他
 
 1. データベースのテーブルを確認出来るphpMyAdminのURLは下記の通りです。
 
-http://localhost:8080
+    http://localhost:8080
 
 2. docker-compose.ymlの設定はlocalhostでの接続設定になっています。
 
