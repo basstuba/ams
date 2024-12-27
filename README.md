@@ -23,7 +23,7 @@ https://github.com/basstuba/ams-frontend
 
 - 打刻機能
 
-    （出勤、退勤、休憩開始、休憩終了）
+   （出勤、退勤、休憩開始、休憩終了）
 
 - 日付別勤怠一覧表示機能
 
@@ -35,7 +35,7 @@ https://github.com/basstuba/ams-frontend
 
 - エクスポート機能
 
-    （日付別勤怠一覧及び個人別勤怠一覧をExcelにて出力）
+   （日付別勤怠一覧及び個人別勤怠一覧をExcelにて出力）
 
 - 打刻修正機能
 
@@ -70,22 +70,22 @@ https://github.com/basstuba/ams-frontend
 ### Dockerコンテナの構築
 
 1. GitHubからアプリケーションを取得
-   
-    任意のディレクトリにて
-    ```
-    git clone git@github.com:basstuba/ams.git
-    ```
-    を実行後
-   
-    ```
-    cd ams
-    ```
+
+   任意のディレクトリにて
+   ```
+   git clone git@github.com:basstuba/ams.git
+   ```
+   を実行後
+
+   ```
+   cd ams
+   ```
    にてアプリケーションのディレクトリへ移動。
 
 3. DockerDesktopアプリを立ち上げる
 
 4. コンテナをビルド
-   
+
    ```
    docker compose up -d --build
    ```
@@ -94,14 +94,14 @@ https://github.com/basstuba/ams-frontend
 ### Laravelの構築
 
 1. Laravelのインストール
-    ```
-    docker compose exec php bash
-    ```
-    を実行しPHPコンテナにログインして
-    ```
-    composer install
-    ```
-    を実行。
+   ```
+   docker compose exec php bash
+   ```
+   を実行しPHPコンテナにログインして
+   ```
+   composer install
+   ```
+   を実行。
 
 2. .envファイルの作成
 
@@ -145,7 +145,7 @@ https://github.com/basstuba/ams-frontend
    を実行。
 
 5. ダミーデータ作成（管理者用アカウントになります。アカウントの詳細はフロントエンドのREADMEに記載しています。）
-   
+
    PHPコンテナにログインした状態で
    ```
    php artisan db:seed
@@ -153,7 +153,7 @@ https://github.com/basstuba/ams-frontend
    を実行。
 
 7. アプリケーション起動キーの作成
-   
+
    PHPコンテナにログインした状態で
    ```
    php artisan key:generate
@@ -161,7 +161,7 @@ https://github.com/basstuba/ams-frontend
    を実行。
 
 9. jwtシークレットキーの作成
-    
+
    PHPコンテナにログインした状態で
    ```
    php artisan jwt:secret
@@ -174,7 +174,7 @@ https://github.com/basstuba/ams-frontend
 
 1. データベース内の各テーブルを確認出来るphpMyAdminのURLは下記の通りです。
 
-    http://localhost:8080
+   http://localhost:8080
 
 2. docker-compose.ymlの設定はlocalhostでの接続設定になっています。
 
