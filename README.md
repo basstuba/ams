@@ -134,7 +134,7 @@ https://github.com/basstuba/ams-frontend
    DB_PASSWORD=ams_pass
    ```
 
-4. テーブルの作成
+3. テーブルの作成
    ```
    docker compose exec php bash
    ```
@@ -144,7 +144,7 @@ https://github.com/basstuba/ams-frontend
    ```
    を実行。
 
-5. ダミーデータ作成（管理者用アカウントになります。アカウントの詳細はフロントエンドのREADMEに記載しています。）
+4. ダミーデータ作成
 
    PHPコンテナにログインした状態で
    ```
@@ -152,7 +152,14 @@ https://github.com/basstuba/ams-frontend
    ```
    を実行。
 
-7. アプリケーション起動キーの作成
+> [!Note]
+> ダミーデータは以下の内容になります。
+> - 管理者用アカウント(アカウントの詳細はフロントエンドのREADMEに記載しています。)
+> - ユーザーデータ
+> - 2024年12月1日から12月31日までの勤務データ
+> - 2024年12月1日から12月31日までの勤務データに対する休憩データ
+
+5. アプリケーション起動キーの作成
 
    PHPコンテナにログインした状態で
    ```
@@ -160,7 +167,7 @@ https://github.com/basstuba/ams-frontend
    ```
    を実行。
 
-9. jwtシークレットキーの作成
+6. jwtシークレットキーの作成
 
    PHPコンテナにログインした状態で
    ```
