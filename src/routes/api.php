@@ -3,9 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AddController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AllUserController;
 use App\Http\Controllers\DailyController;
 use App\Http\Controllers\FixesController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\MonthlyController;
 use App\Http\Controllers\RestController;
 use App\Http\Controllers\UserController;
@@ -45,4 +47,10 @@ Route::group([
     Route::post('rest_fixes', [FixesController::class, 'restUpdate']);
 
     Route::post('work_add', [AddController::class, 'store']);
+
+    Route::post('individual_register', [AdminController::class, 'store']);
+    Route::post('individual_search', [AdminController::class, 'search']);
+    Route::post('information_change', [AdminController::class, 'update']);
+
+    Route::post('import', [ImportController::class, 'import']);
 });
