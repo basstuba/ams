@@ -17,7 +17,7 @@ class RestFactory extends Factory
     public function definition(): array
     {
         return [
-            'work_id' => $this->faker->unique()->numberBetween(1,500),
+            'work_id' => $this->faker->unique(true, 20000)->numberBetween(1, 500),
             'break_start' => '12:00:00',
             'break_end' => '13:00:00',
             'break_time' => '01:00:00',

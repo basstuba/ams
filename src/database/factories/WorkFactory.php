@@ -20,7 +20,7 @@ class WorkFactory extends Factory
         static $combinations = [];
 
         if (empty($combinations)) {
-            $userIds = range(2, 51);
+            $userIds = range(3, 52);
             $dates = collect(Carbon::parse('2024-12-01')->daysUntil('2024-12-31')->toArray());
 
             foreach ($userIds as $userId) {
