@@ -34,7 +34,7 @@ class UsersImport implements ToModel,WithHeadingRow,WithValidation
             'メールアドレス' => 'required|email|unique:users,email',
             'パスワード' => 'required|min:8',
             '社員区分' => 'required|in:社員,契約社員,アルバイト',
-            '社員番号' => ['required', 'regex:^\\d{5}$'],
+            '社員番号' => ['required', 'regex:/^\d{5}$/'],
             '所属部門' => 'required|in:総務部,人事部,経理部,営業部,開発部,無し'
         ];
     }

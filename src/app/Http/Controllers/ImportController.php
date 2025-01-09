@@ -11,7 +11,8 @@ class ImportController extends Controller
 {
     public function import(Request $request) {
         try {
-            Excel::import(new UsersImport, $request->file('file'), null, \Maatwebsite\Excel\Excel::CSV);
+            $file = $request->file('file');
+            Excel::import(new UsersImport, $file);
 
             return response()->json(['message' => '登録完了しました'], 200);
         } catch(ValidationException $error) {
