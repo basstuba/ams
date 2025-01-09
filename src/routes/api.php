@@ -49,8 +49,8 @@ Route::group([
     Route::post('work_add', [AddController::class, 'store']);
 
     Route::post('individual_register', [AdminController::class, 'store']);
-    Route::post('individual_search', [AdminController::class, 'search']);
     Route::post('information_change', [AdminController::class, 'update']);
+    Route::post('individual_search', [AdminController::class, 'search']);
 
     Route::post('import', [ImportController::class, 'import']);
 });
