@@ -10,6 +10,7 @@ use App\Http\Controllers\FixesController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\MonthlyController;
 use App\Http\Controllers\RestController;
+use App\Http\Controllers\SelectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
 
@@ -53,4 +54,7 @@ Route::group([
     Route::post('individual_search', [AdminController::class, 'search']);
 
     Route::post('import', [ImportController::class, 'import']);
+
+    Route::get('select_role', [SelectController::class, 'showRole']);
+    Route::get('select_department', [SelectController::class, 'showDepartment']);
 });
