@@ -34,7 +34,7 @@ class UsersImport implements ToModel,WithHeadingRow,WithValidation
             'メールアドレス' => 'required|email|unique:users,email',
             'パスワード' => 'required|min:8',
             '社員区分' => 'required|in:社員,契約社員,アルバイト',
-            '社員番号' => ['required', 'regex:/^\d{5}$/'],
+            '社員番号' => ['required', 'unique:users,number', 'regex:/^\d{5}$/'],
             '所属部門' => 'required|in:総務部,人事部,経理部,営業部,開発部,無し'
         ];
     }
@@ -52,6 +52,7 @@ class UsersImport implements ToModel,WithHeadingRow,WithValidation
             '社員区分.required' => '社員区分がありません',
             '社員区分.in' => '社員区分は「社員」「契約社員」「アルバイト」のいずれかにしてください',
             '社員番号.required' => '社員番号がありません',
+            '社員番号.unique' => 'この社員番号は既に使用されています',
             '社員番号.regex' => '社員番号は5桁の数字にしてください',
             '所属部門.required' => '所属部門がありません',
             '所属部門.in' => '所属部門は「総務部」「人事部」「経理部」「営業部」「開発部」「無し」のいずれかにしてください'
