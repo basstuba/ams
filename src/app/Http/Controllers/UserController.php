@@ -4,26 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use Exception;
 
 class UserController extends Controller
 {
-    public function register(Request $request) {
-        try {
-            User::create([
-            "name" => $request->name,
-            "email" => $request->email,
-            "password" => Hash::make($request->password)
-            ]);
-
-            return response()->json(['message' => '登録完了しました'], 201);
-        } catch(Exception $error) {
-            return response()->json(['error' => 'サーバーエラーが発生しました'], 500);
-        }
-    }
-
     public function login() {
         $credentials = request(['email', 'password']);
 
