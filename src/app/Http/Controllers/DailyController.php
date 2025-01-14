@@ -65,4 +65,23 @@ class DailyController extends Controller
             return response()->json(['error' => 'データの取得に失敗しました'], 500);
         }
     }
+
+    public function search(Request $request) {
+        try {
+            $onTheDay = $request->date_search;
+            $dayBefore = Work::getBeforeDate($onTheDay);
+            $dayAfter = Work::getAfterDate($onTheDay);
+
+            $works = Work::getWorksByDate($onTheDay);
+
+            return response()->json([
+                'on_the_day' => $onTheDay,
+                'day_before' => $dayBefore,
+                'day_after' => $dayAfter,
+                'works' => $works
+            ], 200);
+        } catch(Exception $error) {
+            return response()->json(['error' => 'データの取得に失敗しました'], 500);
+        }
+    }
 }

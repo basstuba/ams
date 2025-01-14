@@ -37,6 +37,7 @@ Route::group([
     Route::get('yesterday', [DailyController::class, 'index']);
     Route::post('day_before', [DailyController::class, 'showBefore']);
     Route::post('day_after', [DailyController::class, 'showAfter']);
+    Route::post('daily_search', [DailyController::class, 'search']);
 
     Route::post('this_month', [MonthlyController::class, 'index']);
     Route::post('month_before', [MonthlyController::class, 'showBefore']);
