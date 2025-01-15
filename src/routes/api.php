@@ -42,6 +42,7 @@ Route::group([
     Route::post('this_month', [MonthlyController::class, 'index']);
     Route::post('month_before', [MonthlyController::class, 'showBefore']);
     Route::post('month_after', [MonthlyController::class, 'showAfter']);
+    Route::post('monthly_search', [MonthlyController::class, 'search']);
 
     Route::post('date_search', [FixesController::class, 'search']);
     Route::post('work_fixes', [FixesController::class, 'workUpdate']);

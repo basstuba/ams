@@ -72,4 +72,25 @@ class MonthlyController extends Controller
             return response()->json(['error' => 'データの取得に失敗しました'], 500);
         }
     }
+
+    public function search(Request $request) {
+        try {
+            $thisMonth = $request->date_month;
+            $monthBefore = Work::getBeforeMonth($thisMonth);
+            $monthAfter = Work::getAfterMonth($thisMonth);
+
+            $userData = User::find($request->user_id);
+            $workLists = Work::getWorkLists($request->user_id, $thisMonth);
+
+            return response()->json([
+                'this_month' => $thisMonth,
+                'month_before' => $monthBefore,
+                'month_after' => $monthAfter,
+                'user_data' => $userData,
+                'work_lists' => $workLists
+            ], 200);
+        } catch(Exception $error) {
+            return response()->json(['error' => 'データの取得に失敗しました'], 500);
+        }
+    }
 }
